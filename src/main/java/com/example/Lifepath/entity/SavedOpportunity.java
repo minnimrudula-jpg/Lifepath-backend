@@ -1,0 +1,3 @@
+package com.example.Lifepath.entity;
+import jakarta.persistence.*;
+@Entity @Table(name="saved_opportunities",uniqueConstraints=@UniqueConstraint(columnNames={"user_id","opportunity_id"})) public class SavedOpportunity { @Id @GeneratedValue(strategy=GenerationType.IDENTITY) private Long id; @ManyToOne @JoinColumn(name="user_id",nullable=false) private User user; @ManyToOne @JoinColumn(name="opportunity_id",nullable=false) private Opportunity opportunity; protected SavedOpportunity(){} public SavedOpportunity(User user,Opportunity opportunity){this.user=user;this.opportunity=opportunity;} public Long getId(){return id;} public User getUser(){return user;} public Opportunity getOpportunity(){return opportunity;} }
