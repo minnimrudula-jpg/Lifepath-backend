@@ -9,11 +9,13 @@ import java.util.Map;
 import java.util.Set;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 /** Seeds development catalogue data and cleans the visible labels of previously seeded rows. */
 @Component
+@Profile("local")
 public class DemoDataInitializer implements ApplicationRunner {
     private final OpportunityCategoryRepository categories;
     private final OpportunityRepository opportunities;

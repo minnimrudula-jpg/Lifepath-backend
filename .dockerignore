@@ -1,0 +1,11 @@
+.git
+.m2/
+.m2repo/
+**/target/
+target/
+.env
+.env.*
+!.env.example
+*.log
+hs_err_pid*.log
+replay_pid*.log
