@@ -11,6 +11,7 @@ public class User {
  @Column(name="updated_at",nullable=false) private LocalDateTime updatedAt=LocalDateTime.now();
  protected User(){} public User(String n,String e,String p){name=n;email=e;password=p;}
  @PreUpdate void update(){updatedAt=LocalDateTime.now();}
- public Long getId(){return id;} public String getName(){return name;} public String getEmail(){return email;} public String getPassword(){return password;} public Role getRole(){return role;}
+ public Long getId(){return id;} public String getName(){return name;} public String getEmail(){return email;} public String getPassword(){return password;} public Role getRole(){return role;} public LocalDateTime getCreatedAt(){return createdAt;}
  public void setName(String v){name=v;} public void setEmail(String v){email=v;} public void setRole(Role v){role=v;}
+ public void setPassword(String v){password=v;}
 }

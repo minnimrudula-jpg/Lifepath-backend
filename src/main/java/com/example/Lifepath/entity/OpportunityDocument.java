@@ -17,4 +17,13 @@ public class OpportunityDocument {
 
     protected OpportunityDocument() {
     }
+
+    public OpportunityDocument(Opportunity opportunity, Document document) {
+        this.opportunity = opportunity;
+        this.document = document;
+    }
+
+    public Long getId() { return id; }
+    public Opportunity getOpportunity() { return opportunity; }
+    public Document getDocument() { return document; }
 }

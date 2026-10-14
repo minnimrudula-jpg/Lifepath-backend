@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface OpportunityRepository extends JpaRepository<Opportunity, Long> {
     List<Opportunity> findByTitleContainingIgnoreCase(String title);
+    java.util.Optional<Opportunity> findByTitleIgnoreCase(String title);
 }

@@ -35,4 +35,6 @@ public class EligibilityCheck {
     public Long getId() {
         return id;
     }
+
+    public String getFinalStatus() { return finalStatus; }
 }

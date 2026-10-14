@@ -27,6 +27,27 @@ public class EligibilityRule {
     protected EligibilityRule() {
     }
 
+    public EligibilityRule(Opportunity opportunity, String fieldKey, String operator, String valueType,
+            String expectedValue, boolean required, boolean active) {
+        this.opportunity = opportunity;
+        this.fieldKey = fieldKey;
+        this.operator = operator;
+        this.valueType = valueType;
+        this.expectedValue = expectedValue;
+        this.required = required;
+        this.active = active;
+    }
+
+    public void update(String fieldKey, String operator, String valueType, String expectedValue,
+            boolean required, boolean active) {
+        this.fieldKey = fieldKey;
+        this.operator = operator;
+        this.valueType = valueType;
+        this.expectedValue = expectedValue;
+        this.required = required;
+        this.active = active;
+    }
+
     public Long getId() {
         return id;
     }

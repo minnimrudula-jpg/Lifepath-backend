@@ -31,3 +31,14 @@ build/
 
 ### VS Code ###
 .vscode/
+# Local Maven repository
+.m2repo/
+
+# JVM crash and replay logs
+hs_err_pid*.log
+replay_pid*.log
+
+# Local environment secrets
+.env
+.env.*
+!.env.example

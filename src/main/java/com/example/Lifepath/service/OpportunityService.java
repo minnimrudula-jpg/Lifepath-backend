@@ -13,10 +13,24 @@ import org.springframework.transaction.annotation.Transactional;
 public class OpportunityService {
     private final OpportunityRepository opportunities;
     private final OpportunityCategoryRepository categories;
+    private final EligibilityCheckRepository checks;
+    private final EligibilityRuleRepository rules;
+    private final SavedOpportunityRepository savedOpportunities;
+    private final DeadlineRepository deadlines;
+    private final OpportunityDocumentRepository opportunityDocuments;
+    private final PreparationTaskRepository preparationTasks;
 
-    public OpportunityService(OpportunityRepository o, OpportunityCategoryRepository c) {
+    public OpportunityService(OpportunityRepository o, OpportunityCategoryRepository c, EligibilityCheckRepository checks,
+            EligibilityRuleRepository rules, SavedOpportunityRepository savedOpportunities, DeadlineRepository deadlines,
+            OpportunityDocumentRepository opportunityDocuments, PreparationTaskRepository preparationTasks) {
         opportunities = o;
         categories = c;
+        this.checks = checks;
+        this.rules = rules;
+        this.savedOpportunities = savedOpportunities;
+        this.deadlines = deadlines;
+        this.opportunityDocuments = opportunityDocuments;
+        this.preparationTasks = preparationTasks;
     }
 
     @Transactional(readOnly = true)
@@ -46,7 +60,16 @@ public class OpportunityService {
 
     @Transactional
     public void delete(Long id) {
-        opportunities.delete(find(id));
+        Opportunity opportunity = find(id);
+        if (checks.existsByOpportunityId(id))
+            throw new ApiException(HttpStatus.CONFLICT,
+                    "Opportunity cannot be physically deleted because historical eligibility records reference it");
+        if (savedOpportunities.existsByOpportunity_Id(id) || deadlines.existsByOpportunityId(id)
+                || opportunityDocuments.existsByOpportunityId(id) || preparationTasks.existsByOpportunityId(id))
+            throw new ApiException(HttpStatus.CONFLICT,
+                    "Opportunity is referenced by saved opportunities, deadlines, documents, or preparation tasks and cannot be deleted");
+        rules.deleteByOpportunityId(id);
+        opportunities.delete(opportunity);
     }
 
     public Opportunity find(Long id) {

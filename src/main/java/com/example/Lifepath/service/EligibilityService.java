@@ -79,6 +79,8 @@ public class EligibilityService {
                 : r.getFieldKey().equals("annual_income") ? "DECIMAL" : "STRING";
         if (!expected.equals(r.getValueType()))
             throw new ApiException(HttpStatus.BAD_REQUEST, "Invalid value_type for " + r.getFieldKey());
+        if (expected.equals("STRING") && !Set.of("=", "!=").contains(r.getOperator()))
+            throw new ApiException(HttpStatus.BAD_REQUEST, "Invalid operator for STRING eligibility rule");
         try {
             if (expected.equals("INTEGER"))
                 Integer.parseInt(r.getExpectedValue());

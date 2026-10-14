@@ -15,4 +15,20 @@ public class Document {
 
     protected Document() {
     }
+
+    public Document(String name, String description, String fileUrl) {
+        this.name = name;
+        this.description = description;
+        this.fileUrl = fileUrl;
+    }
+
+    public Long getId() {
+        return id;
+    }
+    public String getName() { return name; }
+    public String getDescription() { return description; }
+    public String getFileUrl() { return fileUrl; }
+    public void setName(String name) { this.name = name; }
+    public void setDescription(String description) { this.description = description; }
+    public void setFileUrl(String fileUrl) { this.fileUrl = fileUrl; }
 }

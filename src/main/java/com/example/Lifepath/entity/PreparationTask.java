@@ -17,4 +17,17 @@ public class PreparationTask {
 
     protected PreparationTask() {
     }
+
+    public PreparationTask(Opportunity opportunity, String title, String description) {
+        this.opportunity = opportunity;
+        this.title = title;
+        this.description = description;
+    }
+
+    public Long getId() { return id; }
+    public Opportunity getOpportunity() { return opportunity; }
+    public String getTitle() { return title; }
+    public String getDescription() { return description; }
+    public void setTitle(String title) { this.title = title; }
+    public void setDescription(String description) { this.description = description; }
 }

@@ -20,6 +20,18 @@ public class Deadline {
     protected Deadline() {
     }
 
+    public Deadline(Opportunity opportunity, String title, LocalDateTime deadline, String description) {
+        this.opportunity = opportunity;
+        this.title = title;
+        this.deadline = deadline;
+        this.description = description;
+    }
+
+    public void update(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
+
     public Long getId() {
         return id;
     }
